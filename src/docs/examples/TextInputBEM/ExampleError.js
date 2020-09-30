@@ -1,18 +1,16 @@
-import React from 'react';
-import TextInputBEM from 'ps-react/TextInputBEM';
+import React from "react";
+import TextInputBEM from "ps-react/TextInputBEM";
 
-/** Required TextBox with error */
-export default class ExampleError extends React.Component {
-  render() {
-    return (
-      <TextInputBEM
-        htmlId="example-optional"
-        label="First Name"
-        name="firstname"
-        onChange={() => {}}
-        required
-        error="First name is required."
-       />
-    )
-  }
+/** Error on Input */
+export default function ExampleOptional() {
+  return (
+    <TextInputBEM
+      htmlId="example-error"
+      name="lastname"
+      label="Last Name"
+      onChange={() => {}}
+      required
+      error="Last name is required"
+    />
+  );
 }

@@ -1,16 +1,28 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Label from '../Label';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import Label from "../Label";
+import styled from "styled-components";
 
 /** Text input with integrated label to enforce consistency in layout, error display, label placement, and required field marker. */
-function TextInput({htmlId, name, label, type = "text", required = false, onChange, placeholder, value, error, children, ...props}) {
+function TextInputStyledComponents({
+  htmlId,
+  name,
+  label,
+  type = "text",
+  required = false,
+  onChange,
+  placeholder,
+  value,
+  error,
+  children,
+  ...props
+}) {
   const Error = styled.div`
     color: red;
-  `
+  `;
 
   const Input = styled.input`
-    border: ${error && 'solid 1px red'};
+    border: ${error && "solid 1px red"};
     display: block;
   `;
 
@@ -28,14 +40,15 @@ function TextInput({htmlId, name, label, type = "text", required = false, onChan
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        {...props}/>
-        {children}
-      {error && <Error>{error}</Error>}
+        {...props}
+      />
+      {children}
+      {error && <Error style={{ color: "red" }}>{error}</Error>}
     </Fieldset>
   );
-};
+}
 
-TextInput.propTypes = {
+TextInputStyledComponents.propTypes = {
   /** Unique HTML ID. Used for tying label to HTML input. Handy hook for automated testing. */
   htmlId: PropTypes.string.isRequired,
 
@@ -46,7 +59,7 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
 
   /** Input type */
-  type: PropTypes.oneOf(['text', 'number', 'password']),
+  type: PropTypes.oneOf(["text", "number", "password"]),
 
   /** Mark label with asterisk if set to true */
   required: PropTypes.bool,
@@ -64,7 +77,7 @@ TextInput.propTypes = {
   error: PropTypes.string,
 
   /** Child component to display next to the input */
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
-export default TextInput;
+export default TextInputStyledComponents;

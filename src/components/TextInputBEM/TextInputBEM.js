@@ -1,9 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Label from '../Label';
+import React from "react";
+import PropTypes from "prop-types";
+import Label from "../Label";
 
 /** Text input with integrated label to enforce consistency in layout, error display, label placement, and required field marker. */
-function TextInput({htmlId, name, label, type = "text", required = false, onChange, placeholder, value, error, children, ...props}) {
+function TextInputBEM({
+  htmlId,
+  name,
+  label,
+  type = "text",
+  required = false,
+  onChange,
+  placeholder,
+  value,
+  error,
+  children,
+  ...props
+}) {
   return (
     <div className="textinput">
       <Label htmlFor={htmlId} label={label} required={required} />
@@ -14,15 +26,20 @@ function TextInput({htmlId, name, label, type = "text", required = false, onChan
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={error && 'textinput__input--state-error'}
-        {...props}/>
-        {children}
-      {error && <div className="textinput__error">{error}</div>}
+        className={error && "textinput__input--state-error"}
+        {...props}
+      />
+      {children}
+      {error && (
+        <div className="textinput__error" style={{ color: "red" }}>
+          {error}
+        </div>
+      )}
     </div>
   );
-};
+}
 
-TextInput.propTypes = {
+TextInputBEM.propTypes = {
   /** Unique HTML ID. Used for tying label to HTML input. Handy hook for automated testing. */
   htmlId: PropTypes.string.isRequired,
 
@@ -33,7 +50,7 @@ TextInput.propTypes = {
   label: PropTypes.string.isRequired,
 
   /** Input type */
-  type: PropTypes.oneOf(['text', 'number', 'password']),
+  type: PropTypes.oneOf(["text", "number", "password"]),
 
   /** Mark label with asterisk if set to true */
   required: PropTypes.bool,
@@ -51,7 +68,7 @@ TextInput.propTypes = {
   error: PropTypes.string,
 
   /** Child component to display next to the input */
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
-export default TextInput;
+export default TextInputBEM;

@@ -1,27 +1,38 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ProgressBar from '../ProgressBar';
-import EyeIcon from '../EyeIcon';
-import TextInput from '../TextInput';
+import React from "react";
+import PropTypes from "prop-types";
+import ProgressBar from "../ProgressBar";
+import EyeIcon from "../EyeIcon";
+import TextInput from "../TextInput";
 
 /** Password input with integrated label, quality tips, and show password toggle. */
 class PasswordInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPassword: false
-    }
+      showPassword: false,
+    };
   }
 
-  toggleShowPassword = event => {
-    this.setState(prevState => {
+  toggleShowPassword = (event) => {
+    this.setState((prevState) => {
       return { showPassword: !prevState.showPassword };
     });
     if (event) event.preventDefault();
-  }
+  };
 
   render() {
-    const { htmlId, value, label, error, onChange, placeholder, maxLength, showVisibilityToggle, quality, ...props } = this.props;
+    const {
+      htmlId,
+      value,
+      label,
+      error,
+      onChange,
+      placeholder,
+      maxLength,
+      showVisibilityToggle,
+      quality,
+      ...props
+    } = this.props;
     const { showPassword } = this.state;
 
     return (
@@ -29,25 +40,26 @@ class PasswordInput extends React.Component {
         htmlId={htmlId}
         label={label}
         placeholder={placeholder}
-        type={showPassword ? 'text' : 'password'}
+        type={showPassword ? "text" : "password"}
         onChange={onChange}
         value={value}
         maxLength={maxLength}
         error={error}
         required
-        {...props}>
-        {
-          showVisibilityToggle &&
+        {...props}
+      >
+        {showVisibilityToggle && (
           <a
             href="#"
             onClick={this.toggleShowPassword}
-            style={{ marginLeft: 5 }}>
+            style={{ marginLeft: 5 }}
+          >
             <EyeIcon />
           </a>
-        }
-        {
-          value.length > 0 && quality && <ProgressBar percent={quality} width={130} />
-        }
+        )}
+        {value.length > 0 && quality && (
+          <ProgressBar percent={quality} width={130} />
+        )}
       </TextInput>
     );
   }
@@ -82,13 +94,13 @@ PasswordInput.propTypes = {
   quality: PropTypes.number,
 
   /** Validation error to display */
-  error: PropTypes.string
+  error: PropTypes.string,
 };
 
 PasswordInput.defaultProps = {
   maxLength: 50,
   showVisibilityToggle: false,
-  label: 'Password'
+  label: "Password",
 };
 
 export default PasswordInput;

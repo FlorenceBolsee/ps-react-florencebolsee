@@ -1,18 +1,16 @@
-import React from 'react';
-import TextInput from 'ps-react/TextInput';
+import React from "react";
+import TextInput from "ps-react/TextInput";
 
-/** Required TextBox with error */
-export default class ExampleError extends React.Component {
-  render() {
-    return (
-      <TextInput
-        htmlId="example-optional"
-        label="First Name"
-        name="firstname"
-        onChange={() => {}}
-        required
-        error="First name is required."
-       />
-    )
-  }
+/** Error on Input */
+export default function ExampleOptional() {
+  return (
+    <TextInput
+      htmlId="example-error"
+      name="lastname"
+      label="Last Name"
+      onChange={() => {}}
+      required
+      error="Last name is required"
+    />
+  );
 }
